@@ -1,0 +1,120 @@
+:root {
+  --main-header: 'Open Sans', sans-serif;
+  --main-header-color: #aa6600;
+  --desc-font: 'Open Sans', sans-serif;
+  --desc-color: #aa6600;
+  --grad-color-start: #909090;
+  --grad-color-end: #dddddd;
+  --edit-grad-color-start: #ff8844;
+  --edit-grad-color-end: #ffcc00;
+  --angle: 0deg;
+  --gradient-angle: 15%;
+}
+.prices {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.prices-title{
+    font-size: 2.5rem;
+    color: #cccccc88;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.prices-title-text div{
+    background-image: linear-gradient(to right, red, yellow, red);
+    background-size: 200% auto;
+    background-clip: text; 
+    animation: shine 2s ease infinite
+
+}
+.price-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4rem;
+    padding: 1rem;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(8px);
+  border: 1px solid #e0e0e0;
+  border-radius: 6rem;
+  corner-shape: squircle;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+}
+
+.price-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+}
+
+.price-header {
+  padding: 1rem;
+  margin: 1rem;
+text-align: center;    
+  display: flex;
+align-items: center;
+  justify-content: space-between;
+}
+
+.price-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1b1b1f;
+}
+.price-details-list{
+    list-style: none;
+    font-size: 1.6rem;
+    padding: 0.8rem;
+}
+.details-item{
+    background-image: linear-gradient(to right, #cccccc, #999999, #888888, #999999, #cccccc);
+    background-size: 200% auto;
+    text-align: center;
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    animation: shine 3s ease infinite;
+}
+.price-ammount{
+    color: #cccccc88;
+    font-size: 2.5rem;
+    background-image: linear-gradient(to right, red, yellow, red);
+    background-size: 200% auto;
+    background-clip: text;
+    border: 2px solid #1b1b1f;
+    border-radius: 4rem;
+    corner-shape: squircle;
+    padding: 1.2rem;
+    user-select: none;
+    transform: rotate(-10deg);
+    box-shadow: 10px 10px 10px #1b1b1f;
+    transition: 1s all ease;
+}
+
+.price-ammount:hover{
+    transform: rotate(0deg);
+    transform: scale(1.1);
+}
+
+@keyframes shine {
+  to {
+    background-position: -200% center;
+  }
+}
+
+@media (max-width: 800px) {
+
+  .price-card {
+    padding: 1.25rem;
+  }
+
+  .price-value {
+    font-size: 1.85rem;
+  }
+}

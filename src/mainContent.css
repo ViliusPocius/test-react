@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main-full{
+    background-image: url("intro-bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.main-full-div{
+    background-color: rgba(10, 10, 10, 0.4);
+    backdrop-filter: blur(2rem);
+}

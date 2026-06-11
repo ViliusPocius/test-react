@@ -1,0 +1,178 @@
+.contact-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.contact-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    gap: 2rem;
+    margin: 2rem;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(2px);
+  border: 1px solid #e0e0e0;
+  border-radius: 6rem;
+  corner-shape: squircle;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+}
+.contacts{
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  width: 100%;
+}
+.contact-hr{
+    width: 90%;
+    height: 1rem;
+    margin: 1rem;
+    background-image: linear-gradient(to right, red, yellow, red);
+    background-size: 200% auto;
+    animation: shine 2s linear infinite;
+    border-radius: 1rem;
+}
+.contact-text{
+  border: 0.2rem var(--main-headeer-color);
+    background: linear-gradient(
+    120deg,
+    #444 20%,
+    #666 50%,
+    #444 80%
+  );
+  background-size: 200% auto;
+  border-style: solid;
+  border-radius: 1rem;
+  padding: 1rem;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+.email-div, .phone-div{
+  padding: 1rem;
+  font-size: 1.8rem;
+  font-style: italic;
+}
+.btn-main {
+  z-index: 10;
+  display: inline-block;
+  padding: 10px 25px;
+  background: transparent;
+  font-size: 1rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+.btn-form{
+  text-decoration: none;
+  color: #222;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 0.8rem;
+  border: 2px solid #000;
+  background-size: 200% auto;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 2.5s ease;
+  width: 80%;
+}
+.btn-form::before{
+  content: '';
+  position: absolute;
+  padding: 5px 10px;
+  z-index: -1;
+  top:0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0);
+  opacity: 0.8;
+  border-radius: 2rem;
+  background-image: linear-gradient(to right, var(--edit-grad-color-start) 25%, var(--edit-grad-color-end) 75%);
+  transition: all 1.2s ease;
+}
+.btn-form:hover::before{
+  transform: scaleX(1.1);
+  opacity: 1;
+}
+.btn-form:hover{
+  color: #000;
+  border-radius: 2rem;
+  corner-shape: squircle;
+}
+.btn-form:active{
+  scale: 0.95;
+}
+.media{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem
+}
+
+.btn-media {
+  position: relative;
+  background-color: #7f1080;
+  padding: 8px 18px;
+  color: white;
+  font-size: 1rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: 0.5s ease;
+}
+.btn-facebook::before {
+  content: 'Facebook';
+}
+.btn-github::before {
+  content: 'GitHub';
+}
+.btn-media::before {
+  position: absolute;
+  width: fit-content;
+  padding: 5px 10px;
+  bottom: 110%;
+  left: 0%;
+  font-size: 1rem;
+  border-radius: 2rem;
+  background-image: linear-gradient(to right, #7f1080 25%, #5f1060 75%);
+  transform: rotateZ(60deg) translateY(30px) scale(0);
+  transition: all 1s ease;
+  opacity: 0;
+}
+.btn-media:hover {
+  background-color: #5f1060;
+}
+.btn-media:hover::before {
+  transform: rotateZ(0deg) translateY(0) scale(1);
+  opacity: 1;
+}
+.contact-img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+@media (max-width: 800px)  {
+    .contact-section{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+    .email-div, .phone-div{
+        font-size: 1.2rem;
+    }
+}
