@@ -11,6 +11,7 @@ function Duk() {
     const [openId, setOpenId] = useState(null);
     const [openId2, setOpenId2]=useState(null);
     const [openId3, setOpenId3]=useState(null);
+    const [openId4, setOpenId4]=useState(null);
     const questions = [
         {
             id: 1,
@@ -67,30 +68,98 @@ function Duk() {
         <section className="duk-sec">
             <h1 className="duk-title-text"><span ref={aniRef}>Dažniausiai užduodami klausimai</span></h1>
             <div className="duk-main">
-            {questions.map((item) => (
-                <div key={item.id} className="duk-item">
+                <div className="duk-item">
                     <div
                         className="duk-question"
-                        onClick={() => toggleQuestion(item.id)}
+                        onClick={() => setOpenId(!openId)}
                         role="button"
                         onKeyPress={(event) => {
                             if (event.key === "Enter" || event.key === " ") {
-                                toggleQuestion(item.id);
+                                toggleQuestion(openId);
                             }
                         }}
                     >
-                        <span>{item.plus}</span><span>{item.question}</span>
+                        <span>➕</span><span>Kokių dalykų mokau?</span>
                     </div>
-                    {openId === item.id && (
+                    {openId &&(
                         <div data-aos="fade-down" className="wrapper">
                         <div className="duk-answer">
-                            {item.answer}
+                            Šiuo metu mokau 9-12 kl. mokinius matematikos.
                         </div>
-                    </div>
-                    )}
+                        </div>
+                        )
+                    }   
                 </div>
-            ))}
-</div>
+
+                <div className="duk-item">
+                    <div
+                        className="duk-question"
+                        onClick={() => setOpenId2(!openId2)}
+                        role="button"
+                        onKeyPress={(event) => {
+                            if (event.key === "Enter" || event.key === " ") {
+                                toggleQuestion(openId2);
+                            }
+                        }}
+                    >
+                        <span>➕</span><span>Ar galiu mokyti savaitgaliais bei šventinėmis dienomis?</span>
+                    </div>
+                    {openId2 &&(
+                        <div data-aos="fade-down" className="wrapper">
+                        <div className="duk-answer">
+                            Taip. Pamokas galima vykdyti ir ne darbo dienomis be jokio papildomo mokesčio.
+                        </div>
+                        </div>
+                        )
+                    }   
+                </div>
+
+                <div className="duk-item">
+                    <div
+                        className="duk-question"
+                        onClick={() => setOpenId3(!openId3)}
+                        role="button"
+                        onKeyPress={(event) => {
+                            if (event.key === "Enter" || event.key === " ") {
+                                toggleQuestion(openId3);
+                            }
+                        }}
+                    >
+                        <span>➕</span><span>Kiek laiko trunka 1 matematikos pamoka?</span>
+                    </div>
+                    {openId3 &&(
+                        <div data-aos="fade-down" className="wrapper">
+                        <div className="duk-answer">
+                            Matematikos pamoka trunka lygiai 1h.
+                        </div>
+                        </div>
+                        )
+                    }   
+                </div>
+
+                <div className="duk-item">
+                    <div
+                        className="duk-question"
+                        onClick={() => setOpenId4(!openId4)}
+                        role="button"
+                        onKeyPress={(event) => {
+                            if (event.key === "Enter" || event.key === " ") {
+                                toggleQuestion(openId4);
+                            }
+                        }}
+                    >
+                        <span>➕</span><span>Kiek kainuoja  matematikos pamokos?</span>
+                    </div>
+                    {openId4 &&(
+                        <div data-aos="fade-down" className="wrapper">
+                        <div className="duk-answer">
+                            Matematikos pamokos kainuoja 20€/h.
+                        </div>
+                        </div>
+                        )
+                    }   
+                </div>
+            </div>
         </section>
     );
 }
