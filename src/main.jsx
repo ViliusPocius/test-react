@@ -8,18 +8,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "/success",
-    element: <><h1>Payment successful!</h1>
-    <button onClick={() => window.location.href = "/"}>Go back to shop</button>
-    </>,
-  },
-  {
-    path: "/cancel",
-    element: <><h1>Payment cancelled.</h1>
-    <button onClick={() => window.location.href = "/"}>Go back to shop</button>
-    </>,
   }
 ]);
 
