@@ -165,12 +165,16 @@
   justify-content: center;
   flex: 1;
 }
-@media (max-width: 800px)  {
+@media only screen and (max-width: 1000px)  {
     .contact-section{
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 2rem;
+        padding: 1rem;
+    }
+    .contact-card{
+      padding: 1rem;
+      gap: 1.2rem;
     }
     .email-div, .phone-div{
         font-size: 1.2rem;

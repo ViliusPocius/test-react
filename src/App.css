@@ -254,3 +254,24 @@ html {
     display: none;
   }
 }
+@media only screen and (max-height: 680px)
+{
+  .main-div{
+    padding: 1rem;
+    gap: .8rem;
+  }
+  .main-title{
+    font-size: 1.2rem;
+    gap: 1.2rem;
+  }
+  .main-hr{
+    height: .8rem;
+  }
+  .main-card{
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  .my-desc-div{
+    font-size: 1.4rem
+  }
+}
