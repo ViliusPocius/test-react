@@ -115,6 +115,12 @@
     background-color: #ccc;
     transition: all 1s ease;
 }
+.more-btn:hover::after{
+    background-color: #999;
+}
+.more-btn:hover::before{
+    filter: hue-rotate(30deg)
+}
 .more-info{
     position: relative;
     width: 100%;
