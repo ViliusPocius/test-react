@@ -15,7 +15,7 @@
     border-radius: 2rem;
     corner-shape: squircle;
 }
-.duk-title-text{
+.duk-title-text div{
     font-size: 2.5rem;
     background-image: linear-gradient(to right, red, yellow, red);
     background-size: 200% auto;
@@ -66,7 +66,6 @@
 }
 
 @media (max-width: 800px) {
-
   .duk-question{
     display: flex;
     flex-direction: column-reverse;

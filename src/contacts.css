@@ -1,21 +1,21 @@
 .contact-section{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .contact-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    flex: 1;
-    gap: 2rem;
-    margin: 2rem;
-    background: rgba(255,255,255,0.6);
-    backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  gap: 2rem;
+  margin: 2rem;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(2px);
   border: 1px solid #e0e0e0;
   border-radius: 6rem;
   corner-shape: squircle;
@@ -35,17 +35,17 @@
   width: 100%;
 }
 .contact-hr{
-    width: 90%;
-    height: 1rem;
-    margin: 1rem;
-    background-image: linear-gradient(to right, red, yellow, red);
-    background-size: 200% auto;
-    animation: shine 2s linear infinite;
-    border-radius: 1rem;
+  width: 90%;
+  height: 1rem;
+  margin: 1rem;
+  background-image: linear-gradient(to right, red, yellow, red);
+  background-size: 200% auto;
+  animation: shine 2s linear infinite;
+  border-radius: 1rem;
 }
 .contact-text{
   border: 0.2rem var(--main-headeer-color);
-    background: linear-gradient(
+  background: linear-gradient(
     120deg,
     #444 20%,
     #666 50%,

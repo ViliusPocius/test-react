@@ -23,11 +23,9 @@ html {
   top:0;
   z-index:-1;
 }
-
 .bg3 {
   animation-duration:5s;
 }
-
 .main-div{
   position: relative;
   background-color: rgba(0,0,0,0.8);
@@ -124,6 +122,56 @@ html {
   background-image: url("logo.gif");
   background-size: cover;
   background-position: center;
+}
+.secondary-circle{
+  clip-path: ellipse(95% 50% at top);
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid #ffffff66;
+  right: -10px;
+  top: -10px;
+  animation: circle-move 3s linear infinite;
+}
+.secondary-circle-1{
+  width: 25rem;
+  height: 25rem;
+  right: -60px;
+  top: -60px;
+}
+.secondary-circle-2{
+  width: 15rem;
+  height: 15rem;
+  right: -35px;
+  top: -35px;
+}
+.secondary-circle-3{
+  width: 8rem;
+  height: 8rem;
+  right: -27px;
+  top: -27px;
+}
+.secondary-circle-4{
+  width: 5rem;
+  height: 5rem;
+  right: -18px;
+  top: -18px;
+}
+.secondary-circle-5{
+  width: 2.5rem;
+  height: 2.5rem;
+  right: -10px;
+  top: -10px;
+}
+@keyframes circle-move{
+  0%{
+    clip-path: ellipse(95% 50% at top);
+  }
+  50%{
+    clip-path: ellipse(95% 100% at top);
+  }
+  100%{
+    clip-path: ellipse(95% 50% at top);
+  }
 }
 .btn-nav{
   border: 2px solid black;
