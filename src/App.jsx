@@ -58,7 +58,11 @@ const aniRef = useRef();
       <div className="main-div">
         <div className='main-circle'>
         </div>
-        
+        <div className="secondary-circle secondary-circle-1"></div>
+        <div className="secondary-circle secondary-circle-2"></div>
+        <div className="secondary-circle secondary-circle-3"></div>
+        <div className="secondary-circle secondary-circle-4"></div>
+        <div className="secondary-circle secondary-circle-5"></div>
         <div className="main-title">
           <h1><span ref={aniRef}>Matematikos korepetitorius</span> <span className='animatable'>Vilius</span></h1>
           <hr className='main-hr hr-20'/>
