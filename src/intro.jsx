@@ -58,7 +58,7 @@ const Intro = () => {
                         </div>
                         </div>
                         )}
-                    </li>
+                </li>
                 <li><button onClick={() => setShowMore3(!showMore3)} className="list-item">
                         <span className="text">
                         <span className="label">
@@ -73,7 +73,8 @@ const Intro = () => {
                             </p>
                         </div>
                         </div>
-                        )}</li>
+                        )}
+                </li>
                 <li><button onClick={() => setShowMore4(!showMore4)} className="list-item">
                         <span className="text">
                         <span className="label">
@@ -88,7 +89,8 @@ const Intro = () => {
                             </p>
                         </div>
                         </div>
-                        )}</li>
+                        )}
+                </li>
             </ul>
         </div>        
         </div>

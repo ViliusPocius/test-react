@@ -41,6 +41,10 @@
     border-radius: 2rem;
     corner-shape: squircle;
     cursor: pointer;
+    transition: .5s ease;
+}
+.duk-question:hover{
+    background: #999999;
 }
 .duk-answer{
     position: relative;
@@ -49,7 +53,6 @@
     corner-shape: squircle;
     background: #aaaaaa;
 }
-
 .duk-answer::after{
     z-index: -1;
     content: "";
