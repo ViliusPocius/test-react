@@ -122,7 +122,10 @@
   justify-content: center;
   gap: 2rem
 }
-
+.media-links{
+  display: flex;
+  gap: 2rem;
+}
 .btn-media {
   position: relative;
   background-color: #7f1080;

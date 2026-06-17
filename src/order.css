@@ -1,0 +1,87 @@
+.order-div{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.order-form{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-size: 1.5rem;
+    color: white;
+    padding: 2rem;
+    backdrop-filter: blur(2rem);
+    border: .1rem solid black;
+    border-radius: 4rem;
+    corner-shape: squircle;
+    width: fit-content;
+}
+.fields-div{
+    display: flex;
+    gap: 1rem;
+}
+.order-input{
+    border-radius: .6rem;
+    width: 100%;
+    padding: .8rem;
+    transition: .3s ease;;
+}
+.btn-div{
+    width: 100%;
+}
+.order-btn{
+    color: white;
+    background: #006688;
+    z-index: 10;
+    display: inline-block;
+    padding: 10px 25px;
+    font-size: 1.5rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+.btn-form{
+  text-decoration: none;
+  color: #222;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 0.8rem;
+  border: 2px solid #000;
+  background-size: 200% auto;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 2.5s ease;
+  width: 80%;
+}
+.btn-form::before{
+  content: '';
+  position: absolute;
+  padding: 5px 10px;
+  z-index: -1;
+  top:0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0);
+  opacity: 0.8;
+  border-radius: 2rem;
+  background-image: linear-gradient(to right, var(--edit-grad-color-start) 25%, var(--edit-grad-color-end) 75%);
+  transition: all 1.2s ease;
+}
+.btn-form:hover::before{
+  transform: scaleX(1.1);
+  opacity: 1;
+}
+.btn-form:hover{
+  color: #000;
+  border-radius: 2rem;
+  corner-shape: squircle;
+}
+.btn-form:active{
+  scale: 0.95;
+}

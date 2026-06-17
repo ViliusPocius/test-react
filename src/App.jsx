@@ -8,11 +8,12 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
 import MainContent from './mainContent';
+import Order from './order';
 import { useGSAP } from '@gsap/react';
 import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(SplitText);
 
-function App() {
+function App(props) {
   useEffect(() => {
     AOS.init({ duration: 1000, offset: 50});
   }, []);
@@ -51,7 +52,29 @@ const aniRef = useRef();
     }, []);
   return (
     <>
-    <section className='main-sec'>
+
+      {props.login && (
+        <section className="main-sec">
+                <div className="bg"></div>
+      <div className="bg bg-2"></div>
+      <div className="bg bg-3"></div>
+          <div className="main-div">
+             <div className='main-circle'>
+        </div>
+        <div className="secondary-circle secondary-circle-1"></div>
+        <div className="secondary-circle secondary-circle-2"></div>
+        <div className="secondary-circle secondary-circle-3"></div>
+        <div className="secondary-circle secondary-circle-4"></div>
+        <div className="secondary-circle secondary-circle-5"></div>
+        
+        <Order></Order>
+        </div>
+        </section>
+      )
+      }
+      {!props.login && (
+        <>
+      <section className='main-sec'>
       <div className="bg"></div>
       <div className="bg bg-2"></div>
       <div className="bg bg-3"></div>
@@ -76,9 +99,11 @@ const aniRef = useRef();
           <a href="#contact-section" className="btn-nav">Susisiekite su manimi</a>
         </div>
       </div>
-
       </section>
       <MainContent></MainContent>
+      </>
+      )
+      }
     </>
   )
 }
