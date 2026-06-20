@@ -28,8 +28,33 @@ export default function Order() {
     }
     setError('');
 
-    const booking = { name, email, lessonType, date, time, createdAt: new Date().toISOString() };
-    // store booking locally as a simulation of sending to server
+    const booking = { name, email, date, time };
+    // fetch data from local API endpoint
+        fetch('http://localhost:8000/order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: name, email: email, date: date, time: time }),
+        })
+        .then(async response => {
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.detail || "Nepavyko prisijungti");
+            }
+            return data;
+        })
+        .then(data => {
+            localStorage.setItem('token', data);
+
+            setTimeout(() => {
+                navigate('/');
+            }, 1500);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    
     try {
       const existing = JSON.parse(localStorage.getItem('bookings') || '[]');
       existing.push(booking);
@@ -43,10 +68,12 @@ export default function Order() {
 
   if (submitted) {
     return (
-      <div style={{maxWidth:520,margin:'20px auto',padding:16,border:'1px solid #ddd',borderRadius:8}}>
+      <div className="order-div">
+      <div className="order-form">
         <h2>Pamoka užsakyta</h2>
         <p>Sveiki, {name}. Jūsų pamoka užsakyta. Ji įvyks {date} : {time}. <br></br>Visa su pamoka susijusi informacija išsiųsta el. paštu {email}.</p>
-        <button onClick={() => { setSubmitted(false); setName(''); setEmail(''); setDate(''); setTime(''); setLessonType('single'); }}>Make another booking</button>
+        <a className='order-btn' onClick={() => { setSubmitted(false); setName(''); setEmail(''); setDate(''); setTime(''); setLessonType('single'); }}>Užsakyti kitą pamoką</a>
+      </div>
       </div>
     );
   }
@@ -63,19 +90,19 @@ export default function Order() {
       <input value={email} onChange={e=>setEmail(e.target.value)} className='order-input' />
 
       <div className='fields-div'>
-        <div style={{flex:1}}>
-          <label style={{display:'block'}}>Data</label>
+        <div>
+          <label>Data</label>
           <input type="date" value={date} onChange={e=>setDate(e.target.value)} className='order-input' />
         </div>
-        <div style={{flex:1}}>
-          <label style={{display:'block'}}>Laikas</label>
+        <div>
+          <label>Laikas</label>
           <input type="time" value={time} onChange={e=>setTime(e.target.value)} className='order-input' />
         </div>
       </div>
 
       {error && <div role="alert" style={{color:'red',marginTop:8}}>{error}</div>}
 
-      <div className="btn-div"><a onClick={handleSubmit} className='btn-form'>Pateikti</a></div>
+      <div className="btn-div"><a onClick={handleSubmit} className='order-btn btn-form'>Pateikti</a></div>
     </form>
     </div>
   );
