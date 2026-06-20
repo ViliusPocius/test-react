@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr, constr
-from datetime import date, time
+from datetime import datetime, date, time
 import mysql.connector
 import uvicorn
 
@@ -37,13 +37,17 @@ class OrderResponse(BaseModel):
 
 @app.post("/order", response_model=OrderResponse)
 def create_order(payload: OrderRequest):
-    print("payload: ", payload)
     try:
+        booking_time=datetime.combine(payload.date, payload.time)
+        if booking_time<datetime.now():
+            raise HTTPException(status_code=400, detail="invalid date or time")
         cursor.execute("INSERT INTO orders (name, email, date, time) VALUES (%s, %s, %s, %s)", 
                 (payload.name, payload.email, payload.date, payload.time))
         db.commit()
     except mysql.connector.Error as e:
-        print("error")
+        db.rollback()
+        print("error", e)
+        raise HTTPException(status_code=500, detail="database error")
     return {"status": "success", "data": payload}
 
 

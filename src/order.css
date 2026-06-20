@@ -23,6 +23,11 @@
     corner-shape: squircle;
     width: fit-content;
 }
+.order-name-div, .order-email-div{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 .fields-div{
     display: flex;
     gap: 1rem;
@@ -82,4 +87,10 @@
 }
 .btn-form:active{
   scale: 0.95;
+}
+@media (max-width: 800px)
+{
+  .order-div{
+    width: 90vw;
+  }
 }

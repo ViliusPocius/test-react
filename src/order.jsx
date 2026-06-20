@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import "./order.css";
+import { Navigate, useNavigate } from 'react-router-dom';
 export default function Order() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -8,7 +9,7 @@ export default function Order() {
   const [time, setTime] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
-
+  const navigate=useNavigate();
   function validate() {
     if (!name.trim()) return 'Prašome įrašyti savo vardą.';
     if (!email.trim()) return 'Prašome įrašyti el. paštą.';
@@ -18,7 +19,25 @@ export default function Order() {
     if (!time) return 'Nurodykite pamokos laiką.';
     return '';
   }
-
+  function generateTimeSlots(startHour, endHour, stepMinutes) {
+    const slots = [];
+    for (let h = startHour; h < endHour; h++) {
+      for (let m = 0; m < 60; m += stepMinutes) {
+        const hh = String(h).padStart(2, '0');
+        const mm = String(m).padStart(2, '0');
+        slots.push(`${hh}:${mm}`);
+      }
+    }
+    return slots;
+  }
+  function getCurrentDate()
+  {
+    let date=new Date();
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0'); // months are 0-indexed
+    const dd = String(date.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  }
   function handleSubmit(e) {
     e.preventDefault();
     const v = validate();
@@ -45,27 +64,21 @@ export default function Order() {
             return data;
         })
         .then(data => {
-            localStorage.setItem('token', data);
 
-            setTimeout(() => {
-                navigate('/');
-            }, 1500);
+          try {
+            const existing = JSON.parse(localStorage.getItem('bookings') || '[]');
+            existing.push(booking);
+            localStorage.setItem('bookings', JSON.stringify(existing));
+          } catch (err) {
+            // ignore
+          }
+          setSubmitted(true);
         })
         .catch((error) => {
-            console.error('Error:', error);
+            setSubmitted(false);
+            setError("Netinkama data ir laikas")
         });
-    
-    try {
-      const existing = JSON.parse(localStorage.getItem('bookings') || '[]');
-      existing.push(booking);
-      localStorage.setItem('bookings', JSON.stringify(existing));
-    } catch (err) {
-      // ignore
-    }
-
-    setSubmitted(true);
-  }
-
+      }
   if (submitted) {
     return (
       <div className="order-div">
@@ -82,21 +95,22 @@ export default function Order() {
     <div className="order-div">
     <form className="order-form">
       <h2>Užsisakykite pamoką</h2>
-
-      <label>Vardas/Pavardė</label>
-      <input value={name} onChange={e=>setName(e.target.value)} className='order-input'/>
-
-      <label style={{display:'block',marginTop:8}}>Jūsų el. paštas</label>
-      <input value={email} onChange={e=>setEmail(e.target.value)} className='order-input' />
-
+    <div className="order-name-div">
+          <label>Vardas/Pavardė</label>
+          <input value={name} onChange={e=>setName(e.target.value)} className='order-input'/>
+    </div>
+      <div className="order-email-div">
+          <label>El. paštas</label>
+          <input type='email' value={email} onChange={e=>setEmail(e.target.value)} className='order-input' />
+      </div>
       <div className='fields-div'>
-        <div>
+        <div className='date-div'>
           <label>Data</label>
           <input type="date" value={date} onChange={e=>setDate(e.target.value)} className='order-input' />
         </div>
-        <div>
+        <div className='time-div'>
           <label>Laikas</label>
-          <input type="time" value={time} onChange={e=>setTime(e.target.value)} className='order-input' />
+          <input type="time" step="60" value={time} onChange={e=>setTime(e.target.value)} className='order-input' />
         </div>
       </div>
 

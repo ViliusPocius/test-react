@@ -30,6 +30,7 @@ html {
   align-items: center;
   padding: 2rem;
   gap: 1rem;
+  overflow-x: hidden;
 }
 .main-title{
   flex: 1;
