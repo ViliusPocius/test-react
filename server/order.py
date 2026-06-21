@@ -5,14 +5,13 @@ from datetime import datetime, date, time
 import mysql.connector
 import uvicorn
 
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="corep_db"
-)
-
-cursor = db.cursor()
+def get_connection():
+    return mysql.connector.connect(
+        host="srv1726.hstgr.io",
+        user="u520430181_root",
+        password="Songokas.1",
+        database="u520430181_corep_db"
+    )
 
 app = FastAPI()
 
@@ -37,7 +36,10 @@ class OrderResponse(BaseModel):
 
 @app.post("/order", response_model=OrderResponse)
 def create_order(payload: OrderRequest):
+    conn=None
     try:
+        db = get_connection()
+        cursor = db.cursor()
         booking_time=datetime.combine(payload.date, payload.time)
         if booking_time<datetime.now():
             raise HTTPException(status_code=400, detail="invalid date or time")
@@ -48,6 +50,8 @@ def create_order(payload: OrderRequest):
         db.rollback()
         print("error", e)
         raise HTTPException(status_code=500, detail="database error")
+    finally:
+        db.close()
     return {"status": "success", "data": payload}
 
 
