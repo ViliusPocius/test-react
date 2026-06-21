@@ -139,8 +139,8 @@
 .btn-facebook::before {
   content: 'Facebook';
 }
-.btn-github::before {
-  content: 'GitHub';
+.btn-instagram::before {
+  content: 'Instagram';
 }
 .btn-media::before {
   position: absolute;
