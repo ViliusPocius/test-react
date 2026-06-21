@@ -36,9 +36,8 @@ const aniRef = useRef();
       yoyo: true,
     })
   }, []);
-    return
-    <>
-        <section ref={aniRef} id="contact-section" className="contact-section">
+    return<>
+      <section ref={aniRef} id="contact-section" className="contact-section">
         <div className="contact-card">
             <h1 className="contact-title-text">Kontaktinė informacija</h1>
             <hr className="contact-hr" />
@@ -66,8 +65,8 @@ const aniRef = useRef();
         <div className="contact-img">
           <img src={Mathbook} />
         </div>
-        </section>
-    </>
+      </section>
+      </>
 }
 
 export default Contacts;
