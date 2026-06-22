@@ -68,7 +68,7 @@ def create_order(payload: OrderRequest):
         email_subject="Pamokos informacija"
         email_content="Sveiki, "+str(payload.name)+", Jūsų pamoka užsakyta. Ji įvyks "+str(payload.date)+" : "+str(payload.time)+"."
         send_email(email_rec, email_subject, email_content)
-    except mysql.connector.Error as e:
+    except Exception as e:
         db.rollback()
         print("error", e)
         raise HTTPException(status_code=500, detail="database error")
