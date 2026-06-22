@@ -6,23 +6,18 @@ import mysql.connector
 import uvicorn
 import smtplib
 import os
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import resend
 from dotenv import load_dotenv
 
 load_dotenv()
-
+resend.api_key=os.getenv("API_KEY")
 def send_email(to: str, subject: str, html_body: str):
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = subject
-    msg["From"] = "info@vilius.site"
-    msg["To"] = to
-    msg.attach(MIMEText(html_body, "html"))
-
-    with smtplib.SMTP_SSL("smtp.hostinger.com", 465) as server:
-        server.login("info@vilius.site", os.getenv("PASSWORD"))
-        server.sendmail("info@vilius.site", to, msg.as_string())
-
+    r = resend.Emails.send({
+    "from": "info@vilius.site",
+    "to": to,
+    "subject": subject,
+    "html": html_body
+    })
 def get_connection():
     return mysql.connector.connect(
         host="srv1726.hstgr.io",
