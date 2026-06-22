@@ -1,3 +1,7 @@
+*{
+  --edit-grad-color-start: #cc2222;
+  --edit-grad-color-end: #cc9922;
+}
 .contact-section{
   display: flex;
   align-items: center;

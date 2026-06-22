@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import "./order.css";
 import { Navigate, useNavigate } from 'react-router-dom';
+import Logo from "./top-logo.png";
 export default function Order() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -48,8 +49,9 @@ export default function Order() {
     setError('');
 
     const booking = { name, email, date, time };
-    // fetch data from local API endpoint
-        fetch('https://test-react-3vjj.onrender.com/order', {
+    // https://test-react-3vjj.onrender.com/order
+
+        fetch('http://localhost:8000/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -94,7 +96,9 @@ export default function Order() {
   return (
     <div className="order-div">
     <form className="order-form">
-      <h2>Užsisakykite pamoką</h2>
+      <div className="logo-div"><img width="120px" height="auto" src={Logo} alt="" />
+        <div className="form-title-div"><h2>Užsisakykite pamoką</h2></div>
+      </div>
     <div className="order-name-div">
           <label>Vardas/Pavardė</label>
           <input value={name} onChange={e=>setName(e.target.value)} className='order-input'/>
