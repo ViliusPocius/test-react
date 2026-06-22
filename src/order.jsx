@@ -51,7 +51,7 @@ export default function Order() {
     const booking = { name, email, date, time };
     // https://test-react-3vjj.onrender.com/order
 
-        fetch('http://localhost:8000/order', {
+        fetch('https://test-react-3vjj.onrender.com/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
