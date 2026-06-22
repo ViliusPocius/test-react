@@ -11,6 +11,7 @@ export default function Order() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const navigate=useNavigate();
+
   function validate() {
     if (!name.trim()) return 'Prašome įrašyti savo vardą.';
     if (!email.trim()) return 'Prašome įrašyti el. paštą.';
@@ -52,7 +53,7 @@ export default function Order() {
     // https://test-react-3vjj.onrender.com/order
     // http://localhost:8000/order
 
-        fetch('https://test-react-3vjj.onrender.com/order', {
+        fetch('http://localhost:8000/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -55,8 +55,8 @@ def create_order(payload: OrderRequest):
         booking_time=datetime.combine(payload.date, payload.time)
         if booking_time<datetime.now():
             raise HTTPException(status_code=400, detail="invalid date or time")
-        cursor.execute("INSERT INTO orders (name, email, date, time) VALUES (%s, %s, %s, %s)", 
-                (payload.name, payload.email, payload.date, payload.time))
+        cursor.execute("INSERT INTO orders (name, email, date, fulldate) VALUES (%s, %s, %s, %s)", 
+                (payload.name, payload.email, payload.date, booking_time))
         db.commit()
         email_rec=payload.email
         email_subject="Pamokos informacija"
