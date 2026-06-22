@@ -1,6 +1,6 @@
 *{
-  --edit-grad-color-start: #668844;
-  --edit-grad-color-end: #446688;
+  --edit-grad-color-start: #cc9922;
+  --edit-grad-color-end: #cc2222;
 }
 .order-div{
     width: 100vw;
@@ -22,11 +22,25 @@
     border-radius: 4rem;
     corner-shape: squircle;
     width: fit-content;
+    user-select: none;
 }
 .order-name-div, .order-email-div{
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+.logo-div{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.form-title-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .fields-div{
     display: flex;
@@ -46,7 +60,7 @@
 }
 .order-btn{
   color: white;
-  background: #00668899;
+  background: #22668844;
   z-index: 10;
   padding: 10px 25px;
   font-size: 1.5rem;
@@ -59,7 +73,7 @@
   overflow: hidden;
   border: 2px solid #000;
   background-size: 200% auto;
-  transition: all 2.5s ease;
+  transition: all 1.5s ease;
 }
 .btn-form::before{
   content: '';
@@ -81,7 +95,6 @@
   opacity: 1;
 }
 .btn-form:hover{
-  color: #000;
   border-radius: 2rem;
   corner-shape: squircle;
 }
