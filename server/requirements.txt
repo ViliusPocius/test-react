@@ -4,3 +4,4 @@ python-dotenv
 stripe
 pydantic-settings
 mysql-connector-python
+resend
