@@ -49,7 +49,6 @@ class OrderResponse(BaseModel):
 
 @app.post("/order", response_model=OrderResponse)
 def create_order(payload: OrderRequest):
-    conn=None
     try:
         db = get_connection()
         cursor = db.cursor()
