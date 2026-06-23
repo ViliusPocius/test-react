@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import "./order.css";
 import { Navigate, useNavigate } from 'react-router-dom';
 import Logo from "./top-logo.png";
@@ -10,7 +10,29 @@ export default function Order() {
   const [time, setTime] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
-  const navigate=useNavigate();
+  const [orders, setOrders] = useState([]);
+  const navigate = useNavigate();
+  const orderTimes = generateTimeSlots(0, 24, 60);
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  function fetchOrders() {
+    fetch('http://localhost:8000/get-orders')
+      .then(async response => {
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.detail || 'Nepavyko gauti užsakymų');
+        }
+        console.log(data.data);
+        setOrders(data.data);
+        console.log("Orders::", orders);
+      })
+      .catch((fetchError) => {
+        console.error('Error fetching orders:', fetchError);
+        setError('Nepavyko gauti užsakymų.');
+      });
+  }
 
   function validate() {
     if (!name.trim()) return 'Prašome įrašyti savo vardą.';
@@ -88,7 +110,7 @@ export default function Order() {
       <div className="order-div">
       <div className="order-form">
         <h2>Pamoka užsakyta</h2>
-        <p>Sveiki, {name}. Jūsų pamoka užsakyta. Ji įvyks {date} : {time}. <br></br>Visa su pamoka susijusi informacija bus išsiųsta el. paštu {email}.</p>
+        <p>Sveiki, <b> {name} </b>. Jūsų pamoka užsakyta. Ji įvyks {date} : {time}. <br></br>Visa su pamoka susijusi informacija bus išsiųsta el. paštu <b>{email}</b>.</p>
         <a className='order-btn' onClick={() => { setSubmitted(false); setName(''); setEmail(''); setDate(''); setTime(''); setLessonType('single'); }}>Užsakyti kitą pamoką</a>
       </div>
       </div>
@@ -116,7 +138,15 @@ export default function Order() {
         </div>
         <div className='time-div'>
           <label>Laikas</label>
-          <input type="time" step="60" value={time} onChange={e=>setTime(e.target.value)} className='order-input' />
+          <select value={time} onChange={e=>setTime(e.target.value)} className='order-input'>
+          {Array.isArray(orders) && 
+          orderTimes.map(order=>
+            (
+              <option key={order}>{order}</option>
+            )
+            )
+          }
+          </select>
         </div>
       </div>
 
