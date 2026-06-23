@@ -18,7 +18,7 @@ export default function Order() {
   }, []);
 
   function fetchOrders() {
-    fetch('http://localhost:8000/get-orders')
+    fetch('https://test-react-3vjj.onrender.com/get-orders')
       .then(async response => {
         const data = await response.json();
         if (!response.ok) {
@@ -75,7 +75,7 @@ export default function Order() {
     // https://test-react-3vjj.onrender.com/order
     // http://localhost:8000/order
 
-        fetch('http://localhost:8000/order', {
+        fetch('https://test-react-3vjj.onrender.com/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
