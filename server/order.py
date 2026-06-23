@@ -1,10 +1,9 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, EmailStr, constr
+from pydantic import BaseModel
 from datetime import datetime, date, time
 import mysql.connector
 import uvicorn
-import smtplib
 import os
 import resend
 from dotenv import load_dotenv
@@ -55,12 +54,12 @@ def create_order(payload: OrderRequest):
         booking_time=datetime.combine(payload.date, payload.time)
         if booking_time<datetime.now():
             raise HTTPException(status_code=400, detail="invalid date or time")
-        cursor.execute("INSERT INTO orders (name, email, date, fulldate) VALUES (%s, %s, %s, %s)", 
-                (payload.name, payload.email, payload.date, booking_time))
+        cursor.execute("INSERT INTO orders (name, email, date, time, fulldate) VALUES (%s, %s, %s, %s, %s)", 
+                (payload.name, payload.email, payload.date, payload.time, booking_time))
         db.commit()
         email_rec=payload.email
         email_subject="Pamokos informacija"
-        email_content="Sveiki, "+str(payload.name)+", Jūsų pamoka užsakyta. Ji įvyks <b>"+str(payload.date)+" : "+str(payload.time)+"</b>"
+        email_content="Sveiki, "+str(payload.name)+", Jūsų pamoka užsakyta. Ji įvyks <b>"+str(payload.date)+" d. "+str(payload.time)+" h.</b>"
         send_email(email_rec, email_subject, email_content)
     except Exception as e:
         db.rollback()
@@ -70,7 +69,17 @@ def create_order(payload: OrderRequest):
         db.close()
     return {"status": "success", "data": payload}
 
-
+@app.get("/get-orders")
+def get_orders():
+    try:
+        db=get_connection()
+        cursor=db.cursor()
+        cursor.execute("SELECT * FROM orders")
+        orders=cursor.fetchall()
+    except Exception as e:
+        print(f"Error fetching orders: {e}")
+        raise HTTPException(status_code=500, detail="Error fetching orders")
+    return {"status": "success", "data": orders}
 @app.get("/")
 async def root():
     return {"message": "Order service running"}
