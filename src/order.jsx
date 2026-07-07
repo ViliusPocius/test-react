@@ -125,7 +125,7 @@ export default function Order() {
       <div className="order-form">
         <h2>Pamoka užsakyta</h2>
         <p>Sveiki, <b> {name} </b>. Jūsų pamoka užsakyta. Ji įvyks {date} : {time}. <br></br>Visa su pamoka susijusi informacija bus išsiųsta el. paštu <b>{email}</b>.</p>
-        <a className='order-btn' onClick={() => { setSubmitted(false); setName(''); setEmail(''); setDate(''); setTime(''); setLessonType('single'); setStep(1); }}>Užsakyti kitą pamoką</a>
+        <a className='order-btn' onClick={() => { setSubmitted(false); setName(''); setEmail(''); setDate(''); setTime(''); setStep(1); }}>Užsakyti kitą pamoką</a>
       </div>
       </div>
     );
