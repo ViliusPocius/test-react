@@ -8,8 +8,183 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    position: relative;
 }
 .main-full-div{
     background-color: rgba(10, 10, 10, 0.4);
     backdrop-filter: blur(2rem);
+}
+.chat-container{
+    z-index: 11;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: #888888fa;
+    border: 1px solid #000;
+    position: fixed;
+    width: 20rem;
+    height: 30rem;
+    border-radius: 1.2rem;
+    right: 75px;
+    bottom: 100px;
+}
+.chat-top{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem;
+    color: #fff;
+    background-color: #006600;
+    overflow: hidden;
+    border-radius: 1.2rem 1.2rem 0 0
+}
+.close-btn{
+    position: absolute;
+    font-size: 1rem;
+    padding: .2rem;
+    background-color: #aaaaaa;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 0 1.2rem 0 0;
+    border: none;
+    cursor: pointer;
+    transition: .5s ease;
+}
+.close-btn:hover
+{
+    background-color: #888888;
+}
+.chat-mid{
+    position: relative;
+    height: 100%;
+}
+.message-div{
+    word-break: break-all;
+    position: absolute;
+    background: #444444;
+    color: #ddd;
+    font-size: 1.2rem;
+    right: 10px;
+    top: 10px;
+    border-radius: 0.4rem;
+    padding: .5rem;
+    max-width: 80%;
+    max-height: 40%;
+    overflow: auto;
+}
+.response-div{
+    position: absolute;
+    background: #4444cc;
+    color: #ddd;
+    font-size: 1.2rem;
+    left: 10px;
+    top: 200px;
+    border-radius: 0.4rem;
+    padding: .5rem;
+    max-width: 80%;
+}
+.chat-bottom{
+  position: relative;
+  display: flex;
+  align-self: flex-end;
+  border-radius: 0 0 1.2rem 1.2rem;
+  width: 100%;
+  transition: .3s ease;
+}
+.email-form-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+.email-form{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.email-input{
+  width: 100%;
+  padding: .6rem;
+  transition: .3s ease;
+  border-radius: .6rem;
+}
+.email-submit{
+    position: relative;
+    width: 100%;
+    background: transparent;
+    border: 1px solid #000;
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.email-submit::before
+{
+  content: "";
+  position: absolute;
+  padding: 5px 10px;
+  z-index: -1;
+  top:0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0);
+  opacity: 0.8;
+  border-radius: 2rem;
+  background-image: linear-gradient(to right, var(--edit-grad-color-start) 25%, var(--edit-grad-color-end) 75%);
+  transition: all 1.2s ease;
+}
+.email-submit:hover::before
+{
+    transform: scaleX(1);
+}
+.chat-input{
+  border-radius: 0 0 1.2rem 1.2rem;
+  width: 100%;
+  padding: .6rem;
+  transition: .3s ease;
+}
+.chat-submit{
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: .4rem;
+    font-size: 1.5rem;
+    border-radius: 0 0 1.2rem 0;
+    cursor: pointer;
+    border: none;
+    transition: .5s ease;
+}
+.chat-submit:hover{
+    background-color: #888888;
+}
+.chat-div{
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #cc0000;
+    position: fixed;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100%;
+    right: 50px;
+    bottom: 50px;
+}
+.btn-chat {
+  border: none;
+  background: transparent;
+  font-size: 3rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: 0.5s ease;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.btn-chat:hover
+{
+background: #990000;
 }

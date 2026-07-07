@@ -27,9 +27,9 @@ const aniRef = useRef();
             opacity: 0,
             y: Math.random() * 100 - 250,
             rotation: Math.random() * 360 - 180,
-            stagger: 0.075,
+            stagger: 0.045,
             ease: 'power4.out',
-            duration: 0.1,
+            duration: 0.04,
       }).from(".animatable", {
             opacity: 0,
             ease: "power4.out",

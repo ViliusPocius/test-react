@@ -91,6 +91,22 @@ const Intro = () => {
                         </div>
                         )}
                 </li>
+                <li><button onClick={() => setShowMore5(!showMore5)} className="list-item">
+                        <span className="text">
+                        <span className="label">
+                        <span>✏️</span><span>Mokymo patirtis</span></span>
+                        </span>
+                        </button>
+                        {showMore5 && (
+                        <div data-aos="zoom-in" className="content">
+                        <div className="content-inside">
+                            <p>
+                                Turiu realios darbo patirties įvairiose įmonėse mokant 9-12 klasės mokinius.
+                            </p>
+                        </div>
+                        </div>
+                        )}
+                </li>
             </ul>
         </div>        
         </div>

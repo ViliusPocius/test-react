@@ -207,7 +207,6 @@
 }
 .content{
   position: relative;
-  box-shadow: inset 2px;
   margin: 1rem;
   padding: 0.2rem;
   border-radius: 6rem;
@@ -233,6 +232,13 @@
 }
 .content::before{
   filter: blur(1.2rem);
+}
+
+.content:hover::before{
+  filter: blur(2.4rem);
+}
+.content-inside:hover{
+  background-color: grey;
 }
 @keyframes spin {
   to { --angle: 360deg; }

@@ -21,9 +21,9 @@ function Prices() {
         y: -50,
         opacity: 0,
         rotation: Math.random() * 360 - 180,
-        stagger: 0.05,
+        stagger: 0.015,
         ease: "power4.out",
-        duration: 0.3,
+        duration: 0.15,
       }).from(".details-item", {
         x: -1666,
         stagger: 0.1,
