@@ -88,7 +88,7 @@ export default function Order() {
     // https://test-react-3vjj.onrender.com/order
     // http://localhost:8000/order
 
-        fetch('https://test-react-3vjj.onrender.com/order', {
+        fetch('http://localhost:8000/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
