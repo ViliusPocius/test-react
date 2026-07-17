@@ -18,7 +18,7 @@ function MainContent(){
             console.log(body);
             showMessageDiv(body);
             showResponseDiv("Sveiki, Jūsų užklausa gauta. Atsakymas bus išsiųstas el. paštu "+email+" per artimiausias 24h. Geros dienos!");
-            // fetch('https://test-react-3vjj.onrender.com/send-question'
+            // 'https://test-react-3vjj.onrender.com/send-question'
             fetch('https://test-react-3vjj.onrender.com/send-question', {
             method: 'POST',
             headers: {
