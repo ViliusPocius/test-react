@@ -14,6 +14,7 @@ export default function Order() {
   const [error, setError] = useState('');
   const [orders, setOrders] = useState([]);
   const [step, setStep]=useState(1);
+  const [availableTimes, setAvailableTimes]=useState([]);
   const navigate = useNavigate();
   const orderTimes = generateTimeSlots(0, 24, 60);
   useEffect(() => {
@@ -52,7 +53,8 @@ export default function Order() {
       for (let m = 0; m < 60; m += stepMinutes) {
         const hh = String(h).padStart(2, '0');
         const mm = String(m).padStart(2, '0');
-        slots.push(`${hh}:${mm}`);
+        const timeSlot=`${hh}:${mm}`;
+        slots.push(timeSlot);
       }
     }
     return slots;
@@ -119,6 +121,29 @@ export default function Order() {
             setError("Netinkama data ir laikas");
         });
       }
+  function handleDateChange(e)
+  {
+    console.log("The selected date is: "+e)
+    setDate(e);
+    fetch(`http://test-react-3vjj.onrender.com/get-times?date=${encodeURIComponent(e)}`)
+    .then(async response => {
+          const data = await response.json();
+          if (!response.ok) {
+            throw new Error(data.detail || "Nepavyko");
+          }
+          console.log("the times:", data.data);
+          const unavailable = data.data.map(t => {
+            const s = String(t);
+            return s.length > 3 ? s.slice(0, -3) : '';
+          });
+          console.log("Unavailable times: "+unavailable)
+          const available = orderTimes.filter(t => !unavailable.includes(String(t).trim()))
+          console.log("Available times: "+available);
+          setAvailableTimes(available);
+          return data;
+        });
+  }
+
   if (submitted) {
     return (
       <div className="order-div">
@@ -150,13 +175,13 @@ export default function Order() {
       <div className='fields-div'>
         <div className='date-div'>
           <label>Data</label>
-          <input type="date" value={date} onChange={e=>setDate(e.target.value)} className='order-input' />
+          <input type="date" value={date} onChange={(e)=>handleDateChange(e.target.value)} className='order-input' />
         </div>
         <div className='time-div'>
           <label>Laikas</label>
           <select value={time} onChange={e=>setTime(e.target.value)} className='order-input'>
           {Array.isArray(orders) && 
-          orderTimes.map(order=>
+          availableTimes.map(order=>
             (
               <option key={order}>{order}</option>
             )

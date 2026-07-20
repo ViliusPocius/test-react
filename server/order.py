@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from datetime import datetime, date, time
@@ -60,13 +60,14 @@ class OrderResponse(BaseModel):
     status: str
     data: OrderRequest
 
+class TimesRequest(BaseModel):
+    date: date
+
 @app.post("/order", response_model=OrderResponse)
 def create_order(payload: OrderRequest):
     try:
         db = get_connection()
         cursor = db.cursor()
-        print("Current:", payload.current)
-        print("Target:", payload.target)
         booking_time=datetime.combine(payload.date, payload.time)
         if booking_time<datetime.now():
             raise HTTPException(status_code=400, detail="invalid date or time")
@@ -96,6 +97,21 @@ def get_orders():
         print(f"Error fetching orders: {e}")
         raise HTTPException(status_code=500, detail="Error fetching orders")
     return {"status": "success", "data": orders}
+
+@app.get("/get-times")
+def get_times(date: date = Query(...)):
+    print("dates: "+str(date))
+    try:
+        db=get_connection()
+        cursor=db.cursor()
+        cursor.execute("SELECT time FROM orders WHERE date=%s", (date,))
+        times=cursor.fetchall()
+        formatted_times = [str(row[0]) for row in times]
+        print("times: " + str(formatted_times))
+    except Exception as e:
+        print("Error: ", e)
+        raise HTTPException(status_code=500, detail="error...")
+    return {"status": "success", "data": formatted_times}
 
 @app.post("/send-question")
 def send_question(payload: QuestionRequest):
