@@ -125,7 +125,7 @@ export default function Order() {
   {
     console.log("The selected date is: "+e)
     setDate(e);
-    fetch(`http://test-react-3vjj.onrender.com/get-times?date=${encodeURIComponent(e)}`)
+    fetch(`https://test-react-3vjj.onrender.com/get-times?date=${encodeURIComponent(e)}`)
     .then(async response => {
           const data = await response.json();
           if (!response.ok) {
